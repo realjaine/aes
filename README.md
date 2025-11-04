@@ -44,6 +44,7 @@ aes.v (Top Module)
 
 ## How it is working?
 
+ <pre>
                          AES-128 — BLOCK DIAGRAM
 
 ┌───────────────────────────────────────────────────────────────┐
@@ -114,6 +115,8 @@ Notes:
  - Each round transforms the State with byte substitution,
    shifting, mixing, and key addition.
  - KeyExpansion generates 11 round keys for all AddRoundKey steps.
+   
+</pre>
 
 ### Interface Specifications
 
