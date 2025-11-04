@@ -118,6 +118,12 @@ Notes:
    
 </pre>
 
+
+
+
+![aes_structure](https://github.com/user-attachments/assets/3a9b4eb6-c293-4baa-aa06-a3b14c78c8a7)
+
+ 
 ### Interface Specifications
 
 | Signal | Width | Direction | Description |
