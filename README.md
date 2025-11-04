@@ -325,7 +325,7 @@ This project demonstrates proficiency in:
 
 Contributions are welcome! Here are some areas for improvement:
 
-### Potential Enhancements
+### Future Enhancements
 
 - 🔧 Port to advanced technology nodes (65nm, 45nm, 28nm)
 - 🔧 Implement additional AES modes (CBC, CTR, GCM)
