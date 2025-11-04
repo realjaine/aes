@@ -42,7 +42,7 @@ aes.v (Top Module)
 ```
 
 
-## How it is working?
+## How it is working?🤔
 
  <pre>
                          AES-128 — BLOCK DIAGRAM
