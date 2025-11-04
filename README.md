@@ -41,6 +41,80 @@ aes.v (Top Module)
 └── aes_inv_sbox.v (Inverse Substitution Box)
 ```
 
+
+## How it is working?
+
+                         AES-128 — BLOCK DIAGRAM
+
+┌───────────────────────────────────────────────────────────────┐
+│                        PLAINTEXT                              │
+│                     (128 bits / 16 bytes)                     │
+└───────────────────────────┬───────────────────────────────────┘
+                            │
+                 ┌───────────▼───────────┐
+                 │   INITIAL ROUND       │
+                 │     AddRoundKey       │  ◄── RoundKey[0]
+                 │ (State ← State ⊕ RK0) │
+                 └───────────┬───────────┘
+                            │
+         ┌──────────────────▼──────────────────┐
+         │         ROUNDS 1 – 9 (×9)           │
+         │────────────────────────────────────│
+         │  SubBytes     →  Nonlinear S-box    │
+         │  ShiftRows    →  Row permutation    │
+         │  MixColumns   →  Column mixing      │
+         │  AddRoundKey  →  XOR with RK[i]     │
+         └──────────────────┬──────────────────┘
+                            │
+                 ┌──────────▼──────────┐
+                 │     FINAL ROUND     │
+                 │  SubBytes           │
+                 │  ShiftRows          │
+                 │  AddRoundKey(RK10)  │  (No MixColumns)
+                 └──────────┬──────────┘
+                            │
+                 ┌──────────▼──────────┐
+                 │     CIPHERTEXT      │
+                 │  (128 bits output)  │
+                 └─────────────────────┘
+
+
+                          KEY EXPANSION
+
+┌───────────────────────────────────────────────────────────────┐
+│                        CIPHER KEY                             │
+│                     (128 bits / 16 bytes)                     │
+└───────────────────────────┬───────────────────────────────────┘
+                            │
+                 ┌──────────▼──────────┐
+                 │     KEY EXPANSION   │
+                 │  (KeySchedule)      │
+                 │  Generates:         │
+                 │   RoundKey[0..10]   │
+                 │  using:             │
+                 │   - RotWord         │
+                 │   - SubWord         │
+                 │   - Rcon            │
+                 └──────────┬──────────┘
+                            │
+     ┌─────────────────────────────────────────────────────────┐
+     │  RoundKey Mapping:                                     │
+     │   RK[0]  → Initial AddRoundKey                         │
+     │   RK[1]  → Round 1 AddRoundKey                         │
+     │   RK[2]  → Round 2 AddRoundKey                         │
+     │   ...                                                  │
+     │   RK[9]  → Round 9 AddRoundKey                         │
+     │   RK[10] → Final Round AddRoundKey                     │
+     └─────────────────────────────────────────────────────────┘
+
+
+Notes:
+ - AES-128 operates on a 4×4 byte matrix (the State).
+ - Total: 10 rounds = 1 initial + 9 main + 1 final.
+ - Each round transforms the State with byte substitution,
+   shifting, mixing, and key addition.
+ - KeyExpansion generates 11 round keys for all AddRoundKey steps.
+
 ### Interface Specifications
 
 | Signal | Width | Direction | Description |
