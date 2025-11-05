@@ -1,4 +1,4 @@
-<img width="1221" height="773" alt="fpln1" src="https://github.com/user-attachments/assets/7610f8af-7126-4812-a2d6-c8ee138afaee" />
+
 # RTL-to-GDSII Implementation of a 128-bit AES Crypto Core
 
 
