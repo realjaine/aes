@@ -200,15 +200,6 @@ This project follows the complete industry-standard ASIC design flow:
 | **Endpoint (Capture)** | core/keymem_key_mem_reg[13][61]/SI | — | Capture flip-flop data pin. |
 | **Slack (WNS)** | **+2.190** | **ns** | ✅ **High margin, good timing.** |
 
-## 🧱 Design Rule Check (DRC) Summary — 90nm Technology (Innovus Pre-CTS)
-
-| Violation Type | Violation Count | Worst Violation Value | Significance |
-| :--- | :--- | :--- | :--- |
-| **Max Capacitance** | 2 | -14.027 | 2 nets violate max cap (see `aes_preCTS.cap`). |
-| **Max Transition** | 0 | 0.000 | Slew within bounds. |
-| **Max Fanout** | 0 | 0 | No overloading. |
-| **Total Violating Nets**| 2 | — | ⚠️ 2 nets require fixing post-CTS. |
-
 ## 🧩 Physical & Connectivity Verification Summary (Innovus Final)
 
 | Report File | Violation Status | Description |
