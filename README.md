@@ -1,4 +1,4 @@
-
+<img width="1221" height="773" alt="fpln1" src="https://github.com/user-attachments/assets/7610f8af-7126-4812-a2d6-c8ee138afaee" />
 # RTL-to-GDSII Implementation of a 128-bit AES Crypto Core
 
 
@@ -285,26 +285,17 @@ https://github.com/user-attachments/assets/aadf8c12-3963-4d89-b23b-a4c03144fd3c
 ---
 
 ### Floorplan
+<img width="1221" height="773" alt="fpln1" src="https://github.com/user-attachments/assets/689e2dbf-c2d7-4bc3-a019-5a6639581768" />
 
-<img width="1316" alt="Physical floorplan" src="https://github.com/user-attachments/assets/f1666895-ecf5-44c1-a890-37cccbb23d57" />
 
-*Initial floorplan showing core area, I/O placement, and power grid*
-
----
-
-### Placement
-
-<img width="1419" alt="Standard cell placement" src="https://github.com/user-attachments/assets/c7090b7b-ec85-493e-983f-636417d1ba85" />
-
-*Optimized standard cell placement after detailed placement*
+*Initial floorplan showing core area*
 
 ---
+### Initial layout view
+<img width="1419" height="772" alt="plcement" src="https://github.com/user-attachments/assets/a3f63a4a-116f-42d5-b973-9b352d910d6b" />
 
-### Clock Tree Synthesis
-
-<img width="1338" alt="Clock tree structure" src="https://github.com/user-attachments/assets/c71fba2b-a214-4790-bf19-7d60b1090399" />
-
-*Balanced clock distribution network ensuring uniform clock arrival*
+### No layout view
+![2681ec11-e4a0-4fb3-b172-022bb9d0bac5](https://github.com/user-attachments/assets/4a21ade8-615e-40fa-a3cf-1e93d39df3c0)
 
 ---
 
