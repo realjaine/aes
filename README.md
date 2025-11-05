@@ -1,5 +1,5 @@
 
-# RTL-to-GDSII Implementation of a 128-bit AES Crypto Core
+# RTL-to-GDSII Implementation of a 128-bit AES 
 
 
 [![Language](https://img.shields.io/badge/Language-Verilog-yellow.svg)](https://en.wikipedia.org/wiki/Verilog)
