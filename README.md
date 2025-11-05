@@ -157,7 +157,74 @@ This project follows the complete industry-standard ASIC design flow:
 | **GDSII Generation** | Cadence Innovus | Final tape-out ready layout |
 
 ---
+## 📊 90nm AES Core — Synthesis Key Metrics (Genus)
 
+| Metric | Value | File Source | Notes |
+| :--- | :--- | :--- | :--- |
+| **Total Cell Area** | 129749.309 μm² | `aes_area.rpt` | Total standard cell area. |
+| **Total Cell Count** | 15491 | `aes_area.rpt` | Total standard cell instances. |
+| **Data Path Delay** | 5.404 ns (5404 ps) | `aes_timing.rpt` | Critical path delay (pre-layout). |
+| **Max Clock Period (Required)** | 10.0 ns | `aes_postsyn.sdc` | Target clock = 100 MHz. |
+| **Operating Frequency** | 100 MHz | `aes_postsyn.sdc` | System frequency. |
+| **Worst-Case Slack** | +4.130 ns (4130 ps) | `aes_timing.rpt` | ✅ Pre-layout timing met with margin. |
+| **Total Power** | 1.080e-02 W (10.80 mW) | `aes_power.rpt` | Leakage + internal + switching. |
+| **Leakage Power** | 6.417e-04 W (0.64 mW) | `aes_power.rpt` | Static leakage power. |
+
+## ⚡ Power Breakdown (Genus, 90nm CMOS)
+
+| Power Component | Value (W) | % of Total Power | Description |
+| :--- | :--- | :--- | :--- |
+| **Switching Power** | 1.371e-03 | ~12.7% | Charging/discharging of nets. |
+| **Internal Power** | 8.789e-03 | ~81.4% | Power within logic cells. |
+| **Leakage Power** | 6.417e-04 | ~5.9% | Static power when idle. |
+| **Total Power** | **1.080e-02** | **100%** | **Combined total (10.80 mW).** |
+
+## 🧠 Critical Path Analysis — Register to Register (Genus, Pre-Layout)
+
+| Parameter | Value | Unit | Description |
+| :--- | :--- | :--- | :--- |
+| **Path Group** | clk | — | Group containing worst path. |
+| **Startpoint (Launch)** | core/aes_core_ctrl_reg_reg[1]/CK | — | Launch flip-flop clock pin. |
+| **Endpoint (Capture)** | core/keymem_key_mem_reg[13][68]/SI | — | Capture flip-flop data pin. |
+| **Clock Period** | 10000 | ps | Target (100 MHz). |
+| **Required Time** | 9534 | ps | Constraint (period - setup - unc). |
+| **Data Arrival Time** | 5404 | ps | Time taken to reach endpoint. |
+| **Slack** | **+4130** | **ps** | ✅ **Timing met comfortably.** |
+
+## 🔄 Internal Critical Path — Register to Register (Innovus, Pre-CTS)
+
+| Parameter | Value | Unit | Description |
+| :--- | :--- | :--- | :--- |
+| **Path Group** | reg2reg | — | Internal pipeline stage. |
+| **Startpoint (Launch)** | init_reg_reg/Q | — | Launch flip-flop Q pin. |
+| **Endpoint (Capture)** | core/keymem_key_mem_reg[13][61]/SI | — | Capture flip-flop data pin. |
+| **Slack (WNS)** | **+2.190** | **ns** | ✅ **High margin, good timing.** |
+
+## 🧱 Design Rule Check (DRC) Summary — 90nm Technology (Innovus Pre-CTS)
+
+| Violation Type | Violation Count | Worst Violation Value | Significance |
+| :--- | :--- | :--- | :--- |
+| **Max Capacitance** | 2 | -14.027 | 2 nets violate max cap (see `aes_preCTS.cap`). |
+| **Max Transition** | 0 | 0.000 | Slew within bounds. |
+| **Max Fanout** | 0 | 0 | No overloading. |
+| **Total Violating Nets**| 2 | — | ⚠️ 2 nets require fixing post-CTS. |
+
+## 🧩 Physical & Connectivity Verification Summary (Innovus Final)
+
+| Report File | Violation Status | Description |
+| :--- | :--- | :--- |
+| `aes.drc.rpt` | ✅ No DRC violations | Physical layout clean. |
+| `aes.antenna.rpt` | ✅ No violations | No antenna effects. |
+| `aes.conn.rpt` | ✅ Clean | Schematic ↔ Layout matched. |
+
+## 🔍 Connectivity Verification (Innovus Final)
+
+| Parameter | Value | Description |
+| :--- | :--- | :--- |
+| **Tool** | Cadence Innovus 20.14-s095_1 | Physical verification. |
+| **Command** | `verifyConnectivity -type all -error 1000 -warning 50` | Checks for shorts/opens. |
+| **Problems/Warnings** | 0 | ✅ No issues. |
+| **Status** | “Found no problems or warnings.” | Clean layout. |
 ## 📊 Performance Summary
 
 ### Design Metrics at a Glance
